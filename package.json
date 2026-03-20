@@ -1,7 +1,7 @@
 {
   "name": "conflictcast",
   "version": "0.1.0",
-  "description": "GitHub App that predicts merge conflicts between open pull requests.",
+  "description": "Open-source GitHub App that predicts merge conflicts between open pull requests.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -12,9 +12,29 @@
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "github-app",
+    "probot",
+    "merge-conflicts",
+    "pull-requests",
+    "code-review",
+    "typescript",
+    "sqlite",
+    "devops"
+  ],
+  "author": "Meru143",
   "license": "MIT",
+  "homepage": "https://github.com/Meru143/conflictcast#readme",
+  "bugs": {
+    "url": "https://github.com/Meru143/conflictcast/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meru143/conflictcast.git"
+  },
+  "engines": {
+    "node": "22.x"
+  },
   "type": "commonjs",
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",

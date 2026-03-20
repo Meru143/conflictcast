@@ -1,6 +1,6 @@
 name: conflictcast
 description: Predicts merge conflicts between open pull requests
-url: https://github.com/conflictcast/conflictcast
+url: https://github.com/Meru143/conflictcast
 default_events:
   - pull_request
 default_permissions:
