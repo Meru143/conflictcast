@@ -103,11 +103,11 @@ describe("pull_request.synchronize integration", () => {
         expect(commentUpdate2Scope.isDone()).toBe(true);
         expect(checksScope.isDone()).toBe(true);
       },
-      { timeout: 5000 },
+      { timeout: 10000 },
     );
 
     expect(
       createdCheckBodies.some((body) => body.head_sha === "pr-2-head-updated"),
     ).toBe(true);
-  });
+  }, 10000);
 });

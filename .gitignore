@@ -5,3 +5,9 @@ dist/
 *.db-wal
 coverage/
 .env
+2026-03-19-conflictcast-prd.md
+2026-03-19-conflictcast-todo.md
+.agent/
+.agents/
+.claude/
+skills-lock.json
