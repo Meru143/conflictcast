@@ -190,44 +190,44 @@
 ## Phase 6: Webhook Handlers
 
 ### 6.1 Core Analysis Orchestrator
-- [ ] Create `src/analysis/run.ts`
-- [ ] Implement `runAnalysis(octokit, owner: string, repo: string, triggeringPR: number): Promise<void>`
-- [ ] Load repo config using `loadRepoConfig()`
-- [ ] Check `openPRs.length > config.maxOpenPRsToAnalyze` — if true, post info comment and return
-- [ ] Fetch all open PRs using `listOpenPRs()`
-- [ ] Skip draft PRs (check `pr.draft === true`)
-- [ ] For the triggering PR: always fetch fresh files and update SQLite via `upsertPRFiles()`
-- [ ] For each other open PR: load from SQLite cache, fetch fresh if `fetched_at` is older than 60 seconds
-- [ ] Compute `scoreOverlap()` for all pairs involving the triggering PR
-- [ ] For HIGH/LOW risk pairs where `config.commentOnLow` or risk is HIGH: call comment and check run logic
-- [ ] For pairs that were HIGH but are now resolved (after synchronize): call `deleteConflictComment()`
+- [x] Create `src/analysis/run.ts`
+- [x] Implement `runAnalysis(octokit, owner: string, repo: string, triggeringPR: number): Promise<void>`
+- [x] Load repo config using `loadRepoConfig()`
+- [x] Check `openPRs.length > config.maxOpenPRsToAnalyze` — if true, post info comment and return
+- [x] Fetch all open PRs using `listOpenPRs()`
+- [x] Skip draft PRs (check `pr.draft === true`)
+- [x] For the triggering PR: always fetch fresh files and update SQLite via `upsertPRFiles()`
+- [x] For each other open PR: load from SQLite cache, fetch fresh if `fetched_at` is older than 60 seconds
+- [x] Compute `scoreOverlap()` for all pairs involving the triggering PR
+- [x] For HIGH/LOW risk pairs where `config.commentOnLow` or risk is HIGH: call comment and check run logic
+- [x] For pairs that were HIGH but are now resolved (after synchronize): call `deleteConflictComment()`
 
 ### 6.2 `pull_request.opened` Handler
-- [ ] Create `src/handlers/opened.ts`
-- [ ] Extract `owner`, `repo`, `prNumber`, `headSha` from `context.payload`
-- [ ] Call `runAnalysis(context.octokit, owner, repo, prNumber)`
-- [ ] Wrap in try-catch, log errors via `context.log.error()`
-- [ ] Return immediately (Probot responds 200, processing is async)
+- [x] Create `src/handlers/opened.ts`
+- [x] Extract `owner`, `repo`, `prNumber`, `headSha` from `context.payload`
+- [x] Call `runAnalysis(context.octokit, owner, repo, prNumber)`
+- [x] Wrap in try-catch, log errors via `context.log.error()`
+- [x] Return immediately (Probot responds 200, processing is async)
 
 ### 6.3 `pull_request.synchronize` Handler
-- [ ] Create `src/handlers/synchronize.ts`
-- [ ] Invalidate SQLite cache for triggering PR: call `deletePRFiles(repo, prNumber)` before re-fetch
-- [ ] Delete existing conflict comments for PR pairs that are now resolved
-- [ ] Call `runAnalysis(context.octokit, owner, repo, prNumber)`
+- [x] Create `src/handlers/synchronize.ts`
+- [x] Invalidate SQLite cache for triggering PR: call `deletePRFiles(repo, prNumber)` before re-fetch
+- [x] Delete existing conflict comments for PR pairs that are now resolved
+- [x] Call `runAnalysis(context.octokit, owner, repo, prNumber)`
 
 ### 6.4 `pull_request.closed` Handler
-- [ ] Create `src/handlers/closed.ts`
-- [ ] Delete SQLite file record: call `deletePRFiles(repo, prNumber)`
-- [ ] Fetch all comment records for this PR: call `getCommentsForPR(repo, prNumber)`
-- [ ] For each: call `deleteConflictComment()` to remove the comment on the paired PR
-- [ ] Delete all comment records for this PR from SQLite
+- [x] Create `src/handlers/closed.ts`
+- [x] Delete SQLite file record: call `deletePRFiles(repo, prNumber)`
+- [x] Fetch all comment records for this PR: call `getCommentsForPR(repo, prNumber)`
+- [x] For each: call `deleteConflictComment()` to remove the comment on the paired PR
+- [x] Delete all comment records for this PR from SQLite
 
 ### 6.5 Register All Handlers
-- [ ] In `src/index.ts`, import all handlers
-- [ ] Call `app.on("pull_request.opened", openedHandler)`
-- [ ] Call `app.on("pull_request.synchronize", synchronizeHandler)`
-- [ ] Call `app.on("pull_request.closed", closedHandler)`
-- [ ] Call `app.on("pull_request.reopened", openedHandler)` (reuse opened handler)
+- [x] In `src/index.ts`, import all handlers
+- [x] Call `app.on("pull_request.opened", openedHandler)`
+- [x] Call `app.on("pull_request.synchronize", synchronizeHandler)`
+- [x] Call `app.on("pull_request.closed", closedHandler)`
+- [x] Call `app.on("pull_request.reopened", openedHandler)` (reuse opened handler)
 
 ---
 

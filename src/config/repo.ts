@@ -1,9 +1,8 @@
 // Load .conflictcast.yml from repo root via API.
-import type { Octokit } from "@octokit/rest";
 import yaml from "js-yaml";
 
 import logger from "../utils/logger";
-import type { ConflictcastConfig } from "../utils/types";
+import type { ConflictcastConfig, ConflictcastOctokit } from "../utils/types";
 
 export const DEFAULT_CONFIG: ConflictcastConfig = {
   ignoreFiles: ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"],
@@ -36,7 +35,7 @@ function isHttpStatusError(error: unknown, status: number): boolean {
 }
 
 export async function loadRepoConfig(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
 ): Promise<ConflictcastConfig> {

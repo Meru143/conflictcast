@@ -1,7 +1,5 @@
 // Wrappers around Octokit checks API calls.
-import type { Octokit } from "@octokit/rest";
-
-import type { OverlapScore } from "../utils/types";
+import type { ConflictcastOctokit, OverlapScore } from "../utils/types";
 
 type CheckConclusion = "neutral" | "failure";
 
@@ -84,7 +82,7 @@ function buildCheckOutput(results: OverlapScore[]): CheckOutput {
 }
 
 export async function createConflictCheck(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
   headSha: string,
@@ -105,7 +103,7 @@ export async function createConflictCheck(
 }
 
 export async function updateConflictCheck(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
   checkRunId: number,

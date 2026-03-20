@@ -1,4 +1,8 @@
 // Shared TypeScript interfaces.
+import type { Context } from "probot";
+
+export type ConflictcastOctokit = Context["octokit"];
+
 export interface PRFileSet {
   prNumber: number;
   headSha: string;

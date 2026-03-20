@@ -1,8 +1,7 @@
 // Wrappers around Octokit issues comments API.
-import type { Octokit } from "@octokit/rest";
 import { RequestError } from "@octokit/request-error";
 
-import type { OverlapScore } from "../utils/types";
+import type { ConflictcastOctokit, OverlapScore } from "../utils/types";
 
 function buildSharedFilesTable(sharedFiles: string[]): string {
   const lines = ["| Shared File |", "| --- |", ...sharedFiles.map((file) => `| ${file} |`)];
@@ -49,7 +48,7 @@ function buildCommentBody(
 }
 
 export async function postConflictComment(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
   prNumber: number,
@@ -67,7 +66,7 @@ export async function postConflictComment(
 }
 
 export async function updateConflictComment(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
   commentId: number,
@@ -82,7 +81,7 @@ export async function updateConflictComment(
 }
 
 export async function deleteConflictComment(
-  octokit: Octokit,
+  octokit: ConflictcastOctokit,
   owner: string,
   repo: string,
   commentId: number,
