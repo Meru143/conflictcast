@@ -142,32 +142,32 @@
 ## Phase 4: Analysis Engine
 
 ### 4.1 File Overlap
-- [ ] Create `src/analysis/overlap.ts`
-- [ ] Implement `computeFileOverlap(files1: string[], files2: string[], ignorePatterns: string[]): { sharedFiles: string[]; riskLevel: "NONE" | "LOW" }` 
-- [ ] Filter both file lists using `minimatch` against `ignorePatterns` before comparison
-- [ ] Compute intersection of file sets using `Set` intersection
-- [ ] Return `riskLevel: "NONE"` when intersection is empty, `"LOW"` otherwise
-- [ ] Install `npm install minimatch` for glob pattern matching
+- [x] Create `src/analysis/overlap.ts`
+- [x] Implement `computeFileOverlap(files1: string[], files2: string[], ignorePatterns: string[]): { sharedFiles: string[]; riskLevel: "NONE" | "LOW" }` 
+- [x] Filter both file lists using `minimatch` against `ignorePatterns` before comparison
+- [x] Compute intersection of file sets using `Set` intersection
+- [x] Return `riskLevel: "NONE"` when intersection is empty, `"LOW"` otherwise
+- [x] Install `npm install minimatch` for glob pattern matching
 
 ### 4.2 Hunk-Level Analysis
-- [ ] Create `src/analysis/hunk.ts`
-- [ ] Install and import `parseDiff` from `"parse-diff"`
-- [ ] Implement `extractHunkRanges(diffText: string): Map<string, [number, number][]>` mapping file path to array of `[startLine, endLine]` tuples for each hunk
-- [ ] Use `parseDiff(diffText)` → iterate `file.chunks` → each chunk has `newStart` and `newLines`
-- [ ] Handle binary files: `parseDiff` marks them with `isBinary: true`, skip and return empty range array
-- [ ] Handle renamed files: use `to` field (new filename) as map key
-- [ ] Implement `detectHunkOverlap(ranges1: [number, number][], ranges2: [number, number][]): [number,number][] | null` returning overlapping ranges or null
-- [ ] Two ranges `[a,b]` and `[c,d]` overlap when `a <= d && c <= b`
+- [x] Create `src/analysis/hunk.ts`
+- [x] Install and import `parseDiff` from `"parse-diff"`
+- [x] Implement `extractHunkRanges(diffText: string): Map<string, [number, number][]>` mapping file path to array of `[startLine, endLine]` tuples for each hunk
+- [x] Use `parseDiff(diffText)` → iterate `file.chunks` → each chunk has `newStart` and `newLines`
+- [x] Handle binary files: `parseDiff` marks them with `isBinary: true`, skip and return empty range array
+- [x] Handle renamed files: use `to` field (new filename) as map key
+- [x] Implement `detectHunkOverlap(ranges1: [number, number][], ranges2: [number, number][]): [number,number][] | null` returning overlapping ranges or null
+- [x] Two ranges `[a,b]` and `[c,d]` overlap when `a <= d && c <= b`
 
 ### 4.3 Risk Scorer
-- [ ] Create `src/analysis/scorer.ts`
-- [ ] Implement `scoreOverlap(pr1Files: PRFileSet, pr2Files: PRFileSet, diff1: string, diff2: string, config: ConflictcastConfig): OverlapScore`
-- [ ] Step 1: Call `computeFileOverlap()` on the two file sets
-- [ ] Step 2: If riskLevel is NONE, return early with `riskLevel: "NONE"` and no hunks
-- [ ] Step 3: If `config.threshold === "file"`, return `riskLevel: "LOW"` with shared files
-- [ ] Step 4: If `config.threshold === "line"`, call `extractHunkRanges()` for each shared file from both diffs
-- [ ] Step 5: Call `detectHunkOverlap()` for each shared file — if any overlap found, set `riskLevel: "HIGH"`
-- [ ] Populate `conflictingHunks` array with `HunkConflict` objects for HIGH risk pairs
+- [x] Create `src/analysis/scorer.ts`
+- [x] Implement `scoreOverlap(pr1Files: PRFileSet, pr2Files: PRFileSet, diff1: string, diff2: string, config: ConflictcastConfig): OverlapScore`
+- [x] Step 1: Call `computeFileOverlap()` on the two file sets
+- [x] Step 2: If riskLevel is NONE, return early with `riskLevel: "NONE"` and no hunks
+- [x] Step 3: If `config.threshold === "file"`, return `riskLevel: "LOW"` with shared files
+- [x] Step 4: If `config.threshold === "line"`, call `extractHunkRanges()` for each shared file from both diffs
+- [x] Step 5: Call `detectHunkOverlap()` for each shared file — if any overlap found, set `riskLevel: "HIGH"`
+- [x] Populate `conflictingHunks` array with `HunkConflict` objects for HIGH risk pairs
 
 ---
 
