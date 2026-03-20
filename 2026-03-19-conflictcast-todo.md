@@ -79,30 +79,30 @@
 ## Phase 2: Database Layer
 
 ### 2.1 SQLite Connection
-- [ ] Create `src/store/db.ts`
-- [ ] Import `Database` from `"better-sqlite3"`
-- [ ] Read `DATABASE_PATH` from `process.env` with fallback `"./conflictcast.db"`
-- [ ] Call `new Database(DATABASE_PATH)` and export the `db` instance
-- [ ] Enable WAL mode: `db.pragma("journal_mode = WAL")`
-- [ ] Call `db.pragma("foreign_keys = ON")`
-- [ ] Create `initDb()` function that runs all migrations
-- [ ] Call `initDb()` at module load time
+- [x] Create `src/store/db.ts`
+- [x] Import `Database` from `"better-sqlite3"`
+- [x] Read `DATABASE_PATH` from `process.env` with fallback `"./conflictcast.db"`
+- [x] Call `new Database(DATABASE_PATH)` and export the `db` instance
+- [x] Enable WAL mode: `db.pragma("journal_mode = WAL")`
+- [x] Call `db.pragma("foreign_keys = ON")`
+- [x] Create `initDb()` function that runs all migrations
+- [x] Call `initDb()` at module load time
 
 ### 2.2 PR Files Table
-- [ ] In `initDb()`, run `CREATE TABLE IF NOT EXISTS pr_files (repo_full_name TEXT NOT NULL, pr_number INTEGER NOT NULL, head_sha TEXT NOT NULL, files TEXT NOT NULL, fetched_at INTEGER NOT NULL, PRIMARY KEY (repo_full_name, pr_number))`
-- [ ] Create `src/store/prFiles.ts`
-- [ ] Implement `upsertPRFiles(repo: string, prNumber: number, headSha: string, files: string[]): void` using `db.prepare(...).run()`
-- [ ] Implement `getPRFiles(repo: string, prNumber: number): PRFileSet | null`
-- [ ] Implement `deletePRFiles(repo: string, prNumber: number): void`
-- [ ] Implement `getAllOpenPRFiles(repo: string): PRFileSet[]`
+- [x] In `initDb()`, run `CREATE TABLE IF NOT EXISTS pr_files (repo_full_name TEXT NOT NULL, pr_number INTEGER NOT NULL, head_sha TEXT NOT NULL, files TEXT NOT NULL, fetched_at INTEGER NOT NULL, PRIMARY KEY (repo_full_name, pr_number))`
+- [x] Create `src/store/prFiles.ts`
+- [x] Implement `upsertPRFiles(repo: string, prNumber: number, headSha: string, files: string[]): void` using `db.prepare(...).run()`
+- [x] Implement `getPRFiles(repo: string, prNumber: number): PRFileSet | null`
+- [x] Implement `deletePRFiles(repo: string, prNumber: number): void`
+- [x] Implement `getAllOpenPRFiles(repo: string): PRFileSet[]`
 
 ### 2.3 Comments Table
-- [ ] In `initDb()`, run `CREATE TABLE IF NOT EXISTS pr_comments (repo_full_name TEXT NOT NULL, pr_number INTEGER NOT NULL, paired_pr_number INTEGER NOT NULL, comment_id INTEGER NOT NULL, PRIMARY KEY (repo_full_name, pr_number, paired_pr_number))`
-- [ ] Create `src/store/comments.ts`
-- [ ] Implement `upsertComment(repo: string, prNumber: number, pairedPr: number, commentId: number): void`
-- [ ] Implement `getComment(repo: string, prNumber: number, pairedPr: number): number | null` returning `comment_id` or null
-- [ ] Implement `deleteCommentRecord(repo: string, prNumber: number, pairedPr: number): void`
-- [ ] Implement `getCommentsForPR(repo: string, prNumber: number): { pairedPr: number; commentId: number }[]`
+- [x] In `initDb()`, run `CREATE TABLE IF NOT EXISTS pr_comments (repo_full_name TEXT NOT NULL, pr_number INTEGER NOT NULL, paired_pr_number INTEGER NOT NULL, comment_id INTEGER NOT NULL, PRIMARY KEY (repo_full_name, pr_number, paired_pr_number))`
+- [x] Create `src/store/comments.ts`
+- [x] Implement `upsertComment(repo: string, prNumber: number, pairedPr: number, commentId: number): void`
+- [x] Implement `getComment(repo: string, prNumber: number, pairedPr: number): number | null` returning `comment_id` or null
+- [x] Implement `deleteCommentRecord(repo: string, prNumber: number, pairedPr: number): void`
+- [x] Implement `getCommentsForPR(repo: string, prNumber: number): { pairedPr: number; commentId: number }[]`
 
 ---
 
