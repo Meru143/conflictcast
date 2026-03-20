@@ -300,37 +300,37 @@
 ## Phase 9: CI/CD Pipeline
 
 ### 9.1 GitHub Actions CI
-- [ ] Create `.github/workflows/ci.yml` with `on: [push, pull_request]`
-- [ ] Add job `lint` running `npx eslint src/`
-- [ ] Add job `typecheck` running `npx tsc --noEmit`
-- [ ] Add job `test` running `npx vitest run --coverage`
-- [ ] Add job `docker-build` running `docker build .`
-- [ ] Upload coverage to Codecov
+- [x] Create `.github/workflows/ci.yml` with `on: [push, pull_request]`
+- [x] Add job `lint` running `npx eslint src/`
+- [x] Add job `typecheck` running `npx tsc --noEmit`
+- [x] Add job `test` running `npx vitest run --coverage`
+- [x] Add job `docker-build` running `docker build .`
+- [x] Upload coverage to Codecov
 
 ### 9.2 Release Workflow
-- [ ] Create `.github/workflows/release.yml` triggered on tag `v*`
-- [ ] Build Docker image: `docker build -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .`
-- [ ] Push image: `docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}`
-- [ ] Also tag as `:latest`
-- [ ] Run `semantic-release` to update CHANGELOG and GitHub release
+- [x] Create `.github/workflows/release.yml` triggered on tag `v*`
+- [x] Build Docker image: `docker build -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .`
+- [x] Push image: `docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}`
+- [x] Also tag as `:latest`
+- [x] Run `semantic-release` to update CHANGELOG and GitHub release
 
 ---
 
 ## Phase 10: Documentation
 
 ### 10.1 README.md
-- [ ] Add CI badge and Docker image size badge
-- [ ] Add animated GIF showing a PR comment being posted (can be a static screenshot for v1)
-- [ ] Add "How it works" section with the 3-step summary
-- [ ] Add "Installation" section: GitHub App install button + self-hosted Docker instructions
-- [ ] Add "Configuration" section with `.conflictcast.yml` full reference
-- [ ] Add "GitHub App Permissions" table
+- [x] Add CI badge and Docker image size badge
+- [x] Add animated GIF showing a PR comment being posted (can be a static screenshot for v1)
+- [x] Add "How it works" section with the 3-step summary
+- [x] Add "Installation" section: GitHub App install button + self-hosted Docker instructions
+- [x] Add "Configuration" section with `.conflictcast.yml` full reference
+- [x] Add "GitHub App Permissions" table
 
 ### 10.2 Community Files
-- [ ] Create `CONTRIBUTING.md` with Smee.io local dev setup instructions
-- [ ] Create `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1)
-- [ ] Create `SECURITY.md`
-- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md`
-- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md`
-- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md`
-- [ ] Create `.editorconfig`
+- [x] Create `CONTRIBUTING.md` with Smee.io local dev setup instructions
+- [x] Create `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1)
+- [x] Create `SECURITY.md`
+- [x] Create `.github/ISSUE_TEMPLATE/bug_report.md`
+- [x] Create `.github/ISSUE_TEMPLATE/feature_request.md`
+- [x] Create `.github/PULL_REQUEST_TEMPLATE.md`
+- [x] Create `.editorconfig`
