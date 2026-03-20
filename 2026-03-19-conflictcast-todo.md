@@ -174,16 +174,16 @@
 ## Phase 5: Repository Config
 
 ### 5.1 Config Loader
-- [ ] Create `src/config/repo.ts`
-- [ ] Install `npm install js-yaml` and `npm install --save-dev @types/js-yaml`
-- [ ] Implement `loadRepoConfig(octokit, owner: string, repo: string): Promise<ConflictcastConfig>`
-- [ ] Fetch `.conflictcast.yml` using `octokit.rest.repos.getContent({ owner, repo, path: ".conflictcast.yml" })`
-- [ ] Decode base64 content: `Buffer.from(response.data.content, "base64").toString("utf-8")`
-- [ ] Parse with `yaml.load()` from `js-yaml`
-- [ ] Merge parsed values with defaults using spread: `{ ...DEFAULT_CONFIG, ...parsed }`
-- [ ] Catch HTTP 404 (file not found) and return `DEFAULT_CONFIG`
-- [ ] Catch YAML parse errors, log warning, return `DEFAULT_CONFIG`
-- [ ] Define `DEFAULT_CONFIG: ConflictcastConfig` = `{ ignoreFiles: ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"], threshold: "line", commentOnLow: false, failCheck: false, maxOpenPRsToAnalyze: 50 }`
+- [x] Create `src/config/repo.ts`
+- [x] Install `npm install js-yaml` and `npm install --save-dev @types/js-yaml`
+- [x] Implement `loadRepoConfig(octokit, owner: string, repo: string): Promise<ConflictcastConfig>`
+- [x] Fetch `.conflictcast.yml` using `octokit.rest.repos.getContent({ owner, repo, path: ".conflictcast.yml" })`
+- [x] Decode base64 content: `Buffer.from(response.data.content, "base64").toString("utf-8")`
+- [x] Parse with `yaml.load()` from `js-yaml`
+- [x] Merge parsed values with defaults using spread: `{ ...DEFAULT_CONFIG, ...parsed }`
+- [x] Catch HTTP 404 (file not found) and return `DEFAULT_CONFIG`
+- [x] Catch YAML parse errors, log warning, return `DEFAULT_CONFIG`
+- [x] Define `DEFAULT_CONFIG: ConflictcastConfig` = `{ ignoreFiles: ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"], threshold: "line", commentOnLow: false, failCheck: false, maxOpenPRsToAnalyze: 50 }`
 
 ---
 
