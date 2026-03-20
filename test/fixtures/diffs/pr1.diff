@@ -1,0 +1,9 @@
+diff --git a/src/auth/middleware.ts b/src/auth/middleware.ts
+index 1111111..2222222 100644
+--- a/src/auth/middleware.ts
++++ b/src/auth/middleware.ts
+@@ -10,3 +10,3 @@ export function authenticate(request) {
+-  return true;
++  const token = request.headers.authorization;
++  return Boolean(token);
+ }

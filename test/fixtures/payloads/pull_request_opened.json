@@ -1,0 +1,25 @@
+{
+  "action": "opened",
+  "number": 1,
+  "installation": {
+    "id": 1
+  },
+  "repository": {
+    "name": "repo",
+    "full_name": "owner/repo",
+    "owner": {
+      "login": "owner"
+    },
+    "default_branch": "main"
+  },
+  "pull_request": {
+    "number": 1,
+    "draft": false,
+    "head": {
+      "sha": "pr-1-head"
+    },
+    "base": {
+      "ref": "main"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "action": "synchronize",
+  "number": 2,
+  "installation": {
+    "id": 1
+  },
+  "repository": {
+    "name": "repo",
+    "full_name": "owner/repo",
+    "owner": {
+      "login": "owner"
+    },
+    "default_branch": "main"
+  },
+  "pull_request": {
+    "number": 2,
+    "draft": false,
+    "head": {
+      "sha": "pr-2-head-updated"
+    },
+    "base": {
+      "ref": "main"
+    }
+  }
+}

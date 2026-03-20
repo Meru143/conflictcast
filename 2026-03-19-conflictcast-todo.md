@@ -234,66 +234,66 @@
 ## Phase 7: Unit Tests
 
 ### 7.1 Analysis Tests
-- [ ] Create `test/analysis/overlap.test.ts`
-- [ ] Test two identical file sets → all files in `sharedFiles`, `riskLevel: "LOW"`
-- [ ] Test two disjoint file sets → empty `sharedFiles`, `riskLevel: "NONE"`
-- [ ] Test `package-lock.json` in both sets → excluded by default ignore pattern
-- [ ] Create `test/analysis/hunk.test.ts`
-- [ ] Load `test/fixtures/diffs/pr1.diff` and `test/fixtures/diffs/pr2.diff` (overlapping hunks)
-- [ ] Assert `detectHunkOverlap()` returns overlapping ranges
-- [ ] Load `test/fixtures/diffs/pr3.diff` (non-overlapping hunks in same file)
-- [ ] Assert `detectHunkOverlap()` returns null
-- [ ] Test binary file in diff → `extractHunkRanges` returns empty array for that file
-- [ ] Create `test/analysis/scorer.test.ts`
-- [ ] Test `threshold: "file"` mode — returns `LOW` for any shared file without fetching diffs
-- [ ] Test `threshold: "line"` mode — returns `HIGH` only when hunk overlap confirmed
+- [x] Create `test/analysis/overlap.test.ts`
+- [x] Test two identical file sets → all files in `sharedFiles`, `riskLevel: "LOW"`
+- [x] Test two disjoint file sets → empty `sharedFiles`, `riskLevel: "NONE"`
+- [x] Test `package-lock.json` in both sets → excluded by default ignore pattern
+- [x] Create `test/analysis/hunk.test.ts`
+- [x] Load `test/fixtures/diffs/pr1.diff` and `test/fixtures/diffs/pr2.diff` (overlapping hunks)
+- [x] Assert `detectHunkOverlap()` returns overlapping ranges
+- [x] Load `test/fixtures/diffs/pr3.diff` (non-overlapping hunks in same file)
+- [x] Assert `detectHunkOverlap()` returns null
+- [x] Test binary file in diff → `extractHunkRanges` returns empty array for that file
+- [x] Create `test/analysis/scorer.test.ts`
+- [x] Test `threshold: "file"` mode — returns `LOW` for any shared file without fetching diffs
+- [x] Test `threshold: "line"` mode — returns `HIGH` only when hunk overlap confirmed
 
 ### 7.2 Store Tests
-- [ ] Create `test/store/prFiles.test.ts`
-- [ ] Create in-memory test DB: `new Database(":memory:")`
-- [ ] Test `upsertPRFiles` then `getPRFiles` round-trip
-- [ ] Test `deletePRFiles` removes record
-- [ ] Test `getAllOpenPRFiles` returns all rows for the repo
-- [ ] Create `test/store/comments.test.ts`
-- [ ] Test `upsertComment` + `getComment` round-trip
-- [ ] Test `deleteCommentRecord` removes record
-- [ ] Test `getCommentsForPR` returns all paired comments for a PR
+- [x] Create `test/store/prFiles.test.ts`
+- [x] Create in-memory test DB: `new Database(":memory:")`
+- [x] Test `upsertPRFiles` then `getPRFiles` round-trip
+- [x] Test `deletePRFiles` removes record
+- [x] Test `getAllOpenPRFiles` returns all rows for the repo
+- [x] Create `test/store/comments.test.ts`
+- [x] Test `upsertComment` + `getComment` round-trip
+- [x] Test `deleteCommentRecord` removes record
+- [x] Test `getCommentsForPR` returns all paired comments for a PR
 
 ### 7.3 Config Tests
-- [ ] Create `test/config/repo.test.ts`
-- [ ] Mock `octokit.rest.repos.getContent` returning base64-encoded YAML fixture
-- [ ] Assert parsed config overrides defaults correctly
-- [ ] Mock 404 response — assert default config returned
-- [ ] Mock response with invalid YAML — assert default config returned
+- [x] Create `test/config/repo.test.ts`
+- [x] Mock `octokit.rest.repos.getContent` returning base64-encoded YAML fixture
+- [x] Assert parsed config overrides defaults correctly
+- [x] Mock 404 response — assert default config returned
+- [x] Mock response with invalid YAML — assert default config returned
 
 ---
 
 ## Phase 8: Integration Tests
 
 ### 8.1 Probot Integration Tests
-- [ ] Create `test/handlers/opened.integration.ts`
-- [ ] Import `{ Probot, createProbot } from "probot"` and `nock`
-- [ ] Load `test/fixtures/payloads/pull_request_opened.json` fixture
-- [ ] Mock `GET /repos/{owner}/{repo}/pulls` returning 2 open PRs
-- [ ] Mock `GET /repos/{owner}/{repo}/pulls/1/files` and `/pulls/2/files` with overlapping files
-- [ ] Mock `GET /repos/{owner}/{repo}/pulls/1` and `/2` with diff format
-- [ ] Mock `POST /repos/{owner}/{repo}/check-runs`
-- [ ] Mock `POST /repos/{owner}/{repo}/issues/1/comments`
-- [ ] Deliver webhook payload using `probot.receive({ id: "1", name: "pull_request", payload })`
-- [ ] Assert all expected API mocks were called (nock pending: 0)
+- [x] Create `test/handlers/opened.integration.ts`
+- [x] Import `{ Probot, createProbot } from "probot"` and `nock`
+- [x] Load `test/fixtures/payloads/pull_request_opened.json` fixture
+- [x] Mock `GET /repos/{owner}/{repo}/pulls` returning 2 open PRs
+- [x] Mock `GET /repos/{owner}/{repo}/pulls/1/files` and `/pulls/2/files` with overlapping files
+- [x] Mock `GET /repos/{owner}/{repo}/pulls/1` and `/2` with diff format
+- [x] Mock `POST /repos/{owner}/{repo}/check-runs`
+- [x] Mock `POST /repos/{owner}/{repo}/issues/1/comments`
+- [x] Deliver webhook payload using `probot.receive({ id: "1", name: "pull_request", payload })`
+- [x] Assert all expected API mocks were called (nock pending: 0)
 
 ### 8.2 Synchronize Event Integration
-- [ ] Create `test/handlers/synchronize.integration.ts`
-- [ ] Pre-populate SQLite with existing PR file cache and comment record
-- [ ] Deliver `pull_request.synchronize` payload
-- [ ] Assert `PATCH /repos/{owner}/{repo}/issues/comments/{id}` called (comment updated)
-- [ ] Assert `POST /repos/{owner}/{repo}/check-runs` called with new `head_sha`
+- [x] Create `test/handlers/synchronize.integration.ts`
+- [x] Pre-populate SQLite with existing PR file cache and comment record
+- [x] Deliver `pull_request.synchronize` payload
+- [x] Assert `PATCH /repos/{owner}/{repo}/issues/comments/{id}` called (comment updated)
+- [x] Assert `POST /repos/{owner}/{repo}/check-runs` called with new `head_sha`
 
 ### 8.3 Closed Event Integration
-- [ ] Create `test/handlers/closed.integration.ts`
-- [ ] Pre-populate SQLite with comment records for the closing PR
-- [ ] Deliver `pull_request.closed` payload
-- [ ] Assert `DELETE /repos/{owner}/{repo}/issues/comments/{id}` called for each stored comment
+- [x] Create `test/handlers/closed.integration.ts`
+- [x] Pre-populate SQLite with comment records for the closing PR
+- [x] Deliver `pull_request.closed` payload
+- [x] Assert `DELETE /repos/{owner}/{repo}/issues/comments/{id}` called for each stored comment
 
 ---
 

@@ -1,0 +1,9 @@
+diff --git a/src/auth/middleware.ts b/src/auth/middleware.ts
+index 5555555..6666666 100644
+--- a/src/auth/middleware.ts
++++ b/src/auth/middleware.ts
+@@ -30,2 +30,3 @@ export function authenticate(request) {
+-  return false;
++  const session = request.headers["x-session"];
++  return session === "valid";
+ }
