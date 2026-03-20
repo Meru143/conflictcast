@@ -10,6 +10,18 @@ Predict merge conflicts between open pull requests before they land.
 
 `conflictcast` is an open-source GitHub App built with Probot that compares open pull requests, spots overlapping files or hunks, and posts risk signals as GitHub checks and PR comments. The goal is simple: give teams an earlier warning than "this branch no longer merges."
 
+## See It Working
+
+This replay is generated from the existing `pull_request.opened` integration fixture in this repository. It captures the real check/comment payloads that `conflictcast` publishes for a HIGH-risk PR pair, then renders them through the official VHS container.
+
+![conflictcast webhook replay demo](./docs/demo/assets/conflictcast-opened-flow.gif)
+
+- Transcript source: [`docs/demo/captures/pull-request-opened.txt`](./docs/demo/captures/pull-request-opened.txt)
+- Regeneration pipeline: [`docs/demo/README.md`](./docs/demo/README.md)
+- No live GitHub repo or open PRs are required to replay this demo locally: `npm run demo:render`
+
+## GitHub Surface Preview
+
 ![Conflictcast PR comment preview](./docs/conflictcast-preview.svg)
 
 ## Why conflictcast

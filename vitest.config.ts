@@ -6,6 +6,8 @@ export default defineConfig({
     exclude: ["test/handlers/testUtils.ts"],
     coverage: {
       provider: "v8",
+      include: ["src/**/*.ts"],
+      exclude: ["src/demo/renderOpenedFlow.ts"],
     },
   },
 });

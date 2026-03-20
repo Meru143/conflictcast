@@ -1,0 +1,26 @@
+conflictcast demo: pull_request.opened high-risk replay
+captured fixtures: pull_request_opened.json, pr1.diff, pr2.diff
+
+event
+- repository: owner/repo
+- triggering pr: #1 (pr-1-head)
+- compared pull requests: #2
+
+emitted GitHub output
+- check run on pr-2-head -> neutral / Predicted merge conflict risk detected
+- check run on pr-1-head -> neutral / Predicted merge conflict risk detected
+- comment on PR #1 -> competing PR #2
+- comment on PR #2 -> competing PR #1
+
+check summary
+  | PR Pair | Risk | Shared Files |
+  | --- | --- | --- |
+  | #1 vs #2 | HIGH | src/auth/middleware.ts |
+
+comment excerpt
+  ⚠️ **Potential Merge Conflict Detected**
+  Risk level: **HIGH**
+  Competing PR: [#2](https://github.com/owner/repo/pull/2)
+  - `src/auth/middleware.ts`: PR #1 lines 10-12 vs PR #2 lines 11-13
+
+result: conflictcast would publish 2 check run(s) and 2 comment(s) for this webhook event.
