@@ -109,33 +109,33 @@
 ## Phase 3: GitHub API Wrappers
 
 ### 3.1 Pull Request API
-- [ ] Create `src/github/pulls.ts`
-- [ ] Implement `listOpenPRs(octokit, owner: string, repo: string): Promise<PullRequest[]>` using `octokit.rest.pulls.list({ owner, repo, state: "open", per_page: 100 })`
-- [ ] Handle pagination: use `octokit.paginate(octokit.rest.pulls.list, ...)` to fetch all pages
-- [ ] Implement `getPRFiles(octokit, owner: string, repo: string, pullNumber: number): Promise<string[]>` using `octokit.rest.pulls.listFiles({ owner, repo, pull_number: pullNumber })`
-- [ ] Extract `filename` from each file object in the response
-- [ ] Handle `listFiles` pagination (max 300 files per response)
-- [ ] Implement `getPRDiff(octokit, owner: string, repo: string, pullNumber: number): Promise<string>` using `octokit.rest.pulls.get({ owner, repo, pull_number: pullNumber, mediaType: { format: "diff" } })`
-- [ ] Cast response `data` as `unknown as string` (diff format returns raw text)
+- [x] Create `src/github/pulls.ts`
+- [x] Implement `listOpenPRs(octokit, owner: string, repo: string): Promise<PullRequest[]>` using `octokit.rest.pulls.list({ owner, repo, state: "open", per_page: 100 })`
+- [x] Handle pagination: use `octokit.paginate(octokit.rest.pulls.list, ...)` to fetch all pages
+- [x] Implement `getPRFiles(octokit, owner: string, repo: string, pullNumber: number): Promise<string[]>` using `octokit.rest.pulls.listFiles({ owner, repo, pull_number: pullNumber })`
+- [x] Extract `filename` from each file object in the response
+- [x] Handle `listFiles` pagination (max 300 files per response)
+- [x] Implement `getPRDiff(octokit, owner: string, repo: string, pullNumber: number): Promise<string>` using `octokit.rest.pulls.get({ owner, repo, pull_number: pullNumber, mediaType: { format: "diff" } })`
+- [x] Cast response `data` as `unknown as string` (diff format returns raw text)
 
 ### 3.2 Checks API
-- [ ] Create `src/github/checks.ts`
-- [ ] Implement `createConflictCheck(octokit, owner: string, repo: string, headSha: string, results: OverlapScore[]): Promise<number>` returning check_run_id
-- [ ] Call `octokit.rest.checks.create({ owner, repo, name: "conflictcast", head_sha: headSha, status: "completed", conclusion: ..., output: { title, summary, text } })`
-- [ ] Set `conclusion: "neutral"` when `results` has no HIGH risk entries
-- [ ] Set `conclusion: "failure"` (when `failCheck: true` in config) or `"neutral"` for HIGH risk
-- [ ] Build `output.summary` with markdown table of conflicting PR pairs
-- [ ] Build `output.annotations` array for each conflicting file with `path`, `start_line`, `end_line`, `annotation_level: "warning"`, `message`
-- [ ] Implement `updateConflictCheck(octokit, owner: string, repo: string, checkRunId: number, results: OverlapScore[]): Promise<void>` using `octokit.rest.checks.update()`
+- [x] Create `src/github/checks.ts`
+- [x] Implement `createConflictCheck(octokit, owner: string, repo: string, headSha: string, results: OverlapScore[]): Promise<number>` returning check_run_id
+- [x] Call `octokit.rest.checks.create({ owner, repo, name: "conflictcast", head_sha: headSha, status: "completed", conclusion: ..., output: { title, summary, text } })`
+- [x] Set `conclusion: "neutral"` when `results` has no HIGH risk entries
+- [x] Set `conclusion: "failure"` (when `failCheck: true` in config) or `"neutral"` for HIGH risk
+- [x] Build `output.summary` with markdown table of conflicting PR pairs
+- [x] Build `output.annotations` array for each conflicting file with `path`, `start_line`, `end_line`, `annotation_level: "warning"`, `message`
+- [x] Implement `updateConflictCheck(octokit, owner: string, repo: string, checkRunId: number, results: OverlapScore[]): Promise<void>` using `octokit.rest.checks.update()`
 
 ### 3.3 Comments API
-- [ ] Create `src/github/comments.ts`
-- [ ] Implement `postConflictComment(octokit, owner: string, repo: string, prNumber: number, pairedPrNumber: number, score: OverlapScore): Promise<number>` returning comment_id
-- [ ] Build comment body with markdown: `⚠️ **Potential Merge Conflict Detected**`, table of shared files, list of line range overlaps, link to competing PR
-- [ ] Call `octokit.rest.issues.createComment({ owner, repo, issue_number: prNumber, body })`
-- [ ] Return `response.data.id`
-- [ ] Implement `updateConflictComment(octokit, owner: string, repo: string, commentId: number, score: OverlapScore): Promise<void>` using `octokit.rest.issues.updateComment({ owner, repo, comment_id: commentId, body })`
-- [ ] Implement `deleteConflictComment(octokit, owner: string, repo: string, commentId: number): Promise<void>` using `octokit.rest.issues.deleteComment()`, catch and ignore 404 errors
+- [x] Create `src/github/comments.ts`
+- [x] Implement `postConflictComment(octokit, owner: string, repo: string, prNumber: number, pairedPrNumber: number, score: OverlapScore): Promise<number>` returning comment_id
+- [x] Build comment body with markdown: `⚠️ **Potential Merge Conflict Detected**`, table of shared files, list of line range overlaps, link to competing PR
+- [x] Call `octokit.rest.issues.createComment({ owner, repo, issue_number: prNumber, body })`
+- [x] Return `response.data.id`
+- [x] Implement `updateConflictComment(octokit, owner: string, repo: string, commentId: number, score: OverlapScore): Promise<void>` using `octokit.rest.issues.updateComment({ owner, repo, comment_id: commentId, body })`
+- [x] Implement `deleteConflictComment(octokit, owner: string, repo: string, commentId: number): Promise<void>` using `octokit.rest.issues.deleteComment()`, catch and ignore 404 errors
 
 ---
 
