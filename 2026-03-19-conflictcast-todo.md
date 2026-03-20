@@ -6,73 +6,73 @@
 ## Phase 1: Project Setup
 
 ### 1.1 Repository Initialization
-- [ ] Run `npm init -y` in new `conflictcast/` directory
-- [ ] Set `name: "conflictcast"`, `version: "0.1.0"` in `package.json`
-- [ ] Add `"type": "commonjs"` (Probot uses CJS by default)
-- [ ] Create `README.md` with project name, one-line description, and install shield badges
-- [ ] Create `LICENSE` (MIT)
-- [ ] Create `.gitignore` (node_modules, dist, *.db, .env)
-- [ ] Create `CHANGELOG.md`
-- [ ] Run `git init && git add -A && git commit -m "chore: initial scaffold"`
+- [x] Run `npm init -y` in new `conflictcast/` directory
+- [x] Set `name: "conflictcast"`, `version: "0.1.0"` in `package.json`
+- [x] Add `"type": "commonjs"` (Probot uses CJS by default)
+- [x] Create `README.md` with project name, one-line description, and install shield badges
+- [x] Create `LICENSE` (MIT)
+- [x] Create `.gitignore` (node_modules, dist, *.db, .env)
+- [x] Create `CHANGELOG.md`
+- [x] Run `git init && git add -A && git commit -m "chore: initial scaffold"`
 
 ### 1.2 Directory Structure
-- [ ] Create `src/` directory
-- [ ] Create `src/handlers/` directory
-- [ ] Create `src/analysis/` directory
-- [ ] Create `src/github/` directory
-- [ ] Create `src/store/` directory
-- [ ] Create `src/config/` directory
-- [ ] Create `src/utils/` directory
-- [ ] Create `test/` directory
-- [ ] Create `test/fixtures/` directory
-- [ ] Create `test/fixtures/payloads/` directory
-- [ ] Create `test/fixtures/diffs/` directory
-- [ ] Create `.github/workflows/` directory
+- [x] Create `src/` directory
+- [x] Create `src/handlers/` directory
+- [x] Create `src/analysis/` directory
+- [x] Create `src/github/` directory
+- [x] Create `src/store/` directory
+- [x] Create `src/config/` directory
+- [x] Create `src/utils/` directory
+- [x] Create `test/` directory
+- [x] Create `test/fixtures/` directory
+- [x] Create `test/fixtures/payloads/` directory
+- [x] Create `test/fixtures/diffs/` directory
+- [x] Create `.github/workflows/` directory
 
 ### 1.3 TypeScript and Build Setup
-- [ ] Run `npm install --save-dev typescript@5 @types/node ts-node`
-- [ ] Create `tsconfig.json` with `"module": "CommonJS"`, `"target": "ES2022"`, `"strict": true`, `"outDir": "dist"`
-- [ ] Add `"build": "tsc"` and `"start": "node dist/index.js"` to `package.json` scripts
-- [ ] Add `"dev": "nodemon --exec ts-node src/index.ts"` for development
+- [x] Run `npm install --save-dev typescript@5 @types/node ts-node`
+- [x] Create `tsconfig.json` with `"module": "CommonJS"`, `"target": "ES2022"`, `"strict": true`, `"outDir": "dist"`
+- [x] Add `"build": "tsc"` and `"start": "node dist/index.js"` to `package.json` scripts
+- [x] Add `"dev": "nodemon --exec ts-node src/index.ts"` for development
 
 ### 1.4 Install Core Dependencies
-- [ ] Run `npm install probot`
-- [ ] Run `npm install @octokit/rest`
-- [ ] Run `npm install parse-diff`
-- [ ] Run `npm install better-sqlite3` and `npm install --save-dev @types/better-sqlite3`
-- [ ] Run `npm install dotenv`
-- [ ] Run `npm install pino`
-- [ ] Run `npm install --save-dev nodemon vitest nock @vitest/coverage-v8`
+- [x] Run `npm install probot`
+- [x] Run `npm install @octokit/rest`
+- [x] Run `npm install parse-diff`
+- [x] Run `npm install better-sqlite3` and `npm install --save-dev @types/better-sqlite3`
+- [x] Run `npm install dotenv`
+- [x] Run `npm install pino`
+- [x] Run `npm install --save-dev nodemon vitest nock @vitest/coverage-v8`
 
 ### 1.5 Probot App Entry Point
-- [ ] Create `src/index.ts` exporting a Probot `ApplicationFunction`
-- [ ] Import `{ Probot }` from `"probot"`
-- [ ] Export `default (app: Probot) => { ... }` function
-- [ ] Register stub handler: `app.on("pull_request.opened", async () => {})`
-- [ ] Create `src/server.ts` with `import { run } from "probot"; import app from "./index"; run(app);`
+- [x] Create `src/index.ts` exporting a Probot `ApplicationFunction`
+- [x] Import `{ Probot }` from `"probot"`
+- [x] Export `default (app: Probot) => { ... }` function
+- [x] Register stub handler: `app.on("pull_request.opened", async () => {})`
+- [x] Create `src/server.ts` with `import { run } from "probot"; import app from "./index"; run(app);`
 
 ### 1.6 GitHub App Manifest
-- [ ] Create `app.yml` in project root
-- [ ] Set `name: conflictcast`, `description`, `url`
-- [ ] Set `default_events: [pull_request]`
-- [ ] Set `default_permissions: { checks: write, contents: read, issues: write, pull_requests: read }`
+- [x] Create `app.yml` in project root
+- [x] Set `name: conflictcast`, `description`, `url`
+- [x] Set `default_events: [pull_request]`
+- [x] Set `default_permissions: { checks: write, contents: read, issues: write, pull_requests: read }`
 
 ### 1.7 Environment Setup
-- [ ] Create `.env.example` with `APP_ID=`, `PRIVATE_KEY=`, `WEBHOOK_SECRET=`, `PORT=3000`, `LOG_LEVEL=info`, `DATABASE_PATH=./conflictcast.db`
-- [ ] Create `.env` (gitignored) for local development
-- [ ] Load `.env` at startup using `dotenv/config` import at top of `src/server.ts`
+- [x] Create `.env.example` with `APP_ID=`, `PRIVATE_KEY=`, `WEBHOOK_SECRET=`, `PORT=3000`, `LOG_LEVEL=info`, `DATABASE_PATH=./conflictcast.db`
+- [x] Create `.env` (gitignored) for local development
+- [x] Load `.env` at startup using `dotenv/config` import at top of `src/server.ts`
 
 ### 1.8 Docker Setup
-- [ ] Create `Dockerfile` with `FROM node:22-alpine`, `WORKDIR /app`, `COPY`, `npm ci --omit=dev`, `CMD ["node", "dist/index.js"]`
-- [ ] Create `docker-compose.yml` with service `app` (build: .) and `smee` (for local webhook proxy)
-- [ ] Create `.dockerignore` excluding `node_modules`, `.env`, `*.db`, `test/`
+- [x] Create `Dockerfile` with `FROM node:22-alpine`, `WORKDIR /app`, `COPY`, `npm ci --omit=dev`, `CMD ["node", "dist/index.js"]`
+- [x] Create `docker-compose.yml` with service `app` (build: .) and `smee` (for local webhook proxy)
+- [x] Create `.dockerignore` excluding `node_modules`, `.env`, `*.db`, `test/`
 
 ### 1.9 Build and Release Config
-- [ ] Create `.github/workflows/ci.yml`
-- [ ] Create `.github/workflows/release.yml`
-- [ ] Create `Makefile` with targets: `build`, `test`, `lint`, `docker`, `dev`
-- [ ] Run `npm install --save-dev semantic-release @semantic-release/changelog`
-- [ ] Create `.releaserc.json` configuring semantic-release
+- [x] Create `.github/workflows/ci.yml`
+- [x] Create `.github/workflows/release.yml`
+- [x] Create `Makefile` with targets: `build`, `test`, `lint`, `docker`, `dev`
+- [x] Run `npm install --save-dev semantic-release @semantic-release/changelog`
+- [x] Create `.releaserc.json` configuring semantic-release
 
 ---
 

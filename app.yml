@@ -1,0 +1,10 @@
+name: conflictcast
+description: Predicts merge conflicts between open pull requests
+url: https://github.com/conflictcast/conflictcast
+default_events:
+  - pull_request
+default_permissions:
+  checks: write
+  contents: read
+  issues: write
+  pull_requests: read
