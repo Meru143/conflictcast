@@ -135,29 +135,21 @@ h2 {
   background: rgba(255, 255, 255, 0.04);
 }
 
-.ticks {
-  margin: 24px 0 0;
-  padding: 0;
-  list-style: none;
-  color: var(--accent-soft);
-  display: grid;
-  gap: 12px;
-}
-
-.ticks li::before {
-  content: "•";
-  color: var(--accent);
-  margin-right: 10px;
-}
-
-.hero-stack {
-  display: grid;
-  gap: 18px;
-}
-
 .panel {
   overflow: hidden;
   padding: 10px;
+}
+
+.hero-proof {
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+
+.hero-proof figcaption {
+  padding: 14px 16px 12px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .section { padding: 30px 0; }
