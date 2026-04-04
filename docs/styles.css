@@ -56,8 +56,9 @@ pre, code { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
   gap: 24px;
+  align-items: start;
   padding: 28px 0 42px;
 }
 
@@ -143,6 +144,7 @@ h2 {
 .hero-proof {
   display: grid;
   align-content: start;
+  align-self: start;
   gap: 0;
 }
 
