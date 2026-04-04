@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>conflictcast | Predict merge conflicts before they block the queue</title>
+    <meta
+      name="description"
+      content="conflictcast predicts risky pull-request collisions before merge time and surfaces them as GitHub checks and comments."
+    />
+    <meta
+      property="og:title"
+      content="conflictcast | Predict merge conflicts before they block the queue"
+    />
+    <meta
+      property="og:description"
+      content="Self-hosted GitHub App that compares open PRs, spots overlapping hunks, and warns teams before merge queues stall."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://merup.me/conflictcast/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="https://github.com/Meru143/conflictcast">conflictcast</a>
+        <nav>
+          <a href="#signals">Signals</a>
+          <a href="#flow">Flow</a>
+          <a href="#deploy">Deploy</a>
+          <a href="https://github.com/Meru143/conflictcast">GitHub</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">GitHub-native merge risk detection</p>
+            <h1>See pull-request collisions before they turn into rebases, queue stalls, and release churn.</h1>
+            <p class="lede">
+              conflictcast is a self-hosted GitHub App that compares every open pull request,
+              spots shared files and overlapping hunks, and posts risk signals inside the place
+              your team already works: the PR itself.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/Meru143/conflictcast">Star on GitHub</a>
+              <a class="button secondary" href="#deploy">Deploy conflictcast</a>
+            </div>
+            <ul class="ticks">
+              <li>Shared-file overlap for fast, broad detection</li>
+              <li>Line-level overlap for higher-confidence warnings</li>
+              <li>Checks and comments instead of another dashboard</li>
+            </ul>
+          </div>
+
+          <div class="hero-stack">
+            <figure class="panel gif-panel">
+              <img
+                src="./demo/assets/conflictcast-opened-flow.gif"
+                alt="conflictcast demo replay showing PR risk checks and comments"
+              />
+            </figure>
+            <figure class="panel preview-panel">
+              <img
+                src="./conflictcast-preview.svg"
+                alt="conflictcast GitHub comment and check preview"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section id="signals" class="section">
+          <div class="section-head">
+            <p class="eyebrow">Signals</p>
+            <h2>Shift conflict detection from “merge time” to “PR open time.”</h2>
+            <p>
+              The win is not abstract. Teams stop discovering risky overlap only after the branch
+              goes stale. conflictcast moves that signal earlier, while the author still remembers
+              the change and the fix is still cheap.
+            </p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <h3>Checks for the fast scan</h3>
+              <p>Post a visible risk grade on the head commit so reviewers see trouble before merging.</p>
+            </article>
+            <article class="card">
+              <h3>Comments for context</h3>
+              <p>Link the conflicting PR pair directly in the thread instead of hiding it in a side system.</p>
+            </article>
+            <article class="card">
+              <h3>Hunk escalation</h3>
+              <p>Start with shared files, then move to overlapping line ranges when the repo needs more precision.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="flow" class="section split">
+          <div class="section-head">
+            <p class="eyebrow">Flow</p>
+            <h2>One webhook, open PR comparisons, early warning.</h2>
+            <p>
+              conflictcast listens to pull-request events, fetches open diffs, compares them pairwise,
+              and writes the result back as checks and comments. No merge queue product required.
+            </p>
+          </div>
+
+          <div class="flow">
+            <div class="step">
+              <span>01</span>
+              <p>A pull request opens or updates.</p>
+            </div>
+            <div class="step">
+              <span>02</span>
+              <p>conflictcast inspects every currently open PR in the repository.</p>
+            </div>
+            <div class="step">
+              <span>03</span>
+              <p>File overlap escalates to line overlap when configured.</p>
+            </div>
+            <div class="step">
+              <span>04</span>
+              <p>GitHub gets a check run and optional PR comment with the risk signal.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="deploy" class="section deploy">
+          <div class="section-head">
+            <p class="eyebrow">Deploy</p>
+            <h2>Install it where your team already ships.</h2>
+            <p>
+              The repo keeps deployment intentionally small: create a GitHub App, point the webhook
+              at the service, and run the app with Docker or plain Node.
+            </p>
+          </div>
+
+          <div class="install-grid">
+            <pre><code>docker build -t conflictcast .
+docker run -p 3000:3000 \
+  -e APP_ID=... \
+  -e PRIVATE_KEY="$(cat private-key.pem)" \
+  -e WEBHOOK_SECRET=... \
+  conflictcast</code></pre>
+            <pre><code>.conflictcast.yml
+
+threshold: line
+commentOnLow: false
+failCheck: false
+maxOpenPRsToAnalyze: 50</code></pre>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

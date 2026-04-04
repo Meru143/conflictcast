@@ -1,0 +1,246 @@
+:root {
+  --bg: #090c13;
+  --panel: rgba(15, 21, 35, 0.88);
+  --panel-strong: rgba(20, 28, 46, 0.96);
+  --line: rgba(255, 255, 255, 0.1);
+  --ink: #f3f6ff;
+  --muted: #a3b0cf;
+  --risk: #ff8f68;
+  --accent: #8ec5ff;
+  --accent-soft: #d7e8ff;
+  --shadow: 0 36px 120px rgba(0, 0, 0, 0.42);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(142, 197, 255, 0.14), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255, 143, 104, 0.14), transparent 26%),
+    linear-gradient(180deg, #090c13 0%, #101724 100%);
+  font-family: "Sora", system-ui, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+pre, code { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+.page {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-bottom: 72px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 0 18px;
+}
+
+.topbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--muted);
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 24px;
+  padding: 28px 0 42px;
+}
+
+.hero-copy,
+.panel,
+.card,
+.step,
+.install-grid pre {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero-copy { padding: 36px; }
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--risk);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1, h2, h3 { margin: 0; }
+
+h1 {
+  font-size: clamp(2.9rem, 6vw, 5.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.lede,
+.section-head p:last-child,
+.card p,
+.step p {
+  color: var(--muted);
+  line-height: 1.82;
+}
+
+.lede { margin: 18px 0 0; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.button.primary {
+  color: #120d09;
+  background: linear-gradient(135deg, var(--risk), #ffc9a6);
+}
+
+.button.secondary {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ticks {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--accent-soft);
+  display: grid;
+  gap: 12px;
+}
+
+.ticks li::before {
+  content: "•";
+  color: var(--accent);
+  margin-right: 10px;
+}
+
+.hero-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.panel {
+  overflow: hidden;
+  padding: 10px;
+}
+
+.section { padding: 30px 0; }
+.section-head { max-width: 760px; }
+
+.cards,
+.install-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.step { padding: 24px; }
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.flow {
+  display: grid;
+  gap: 16px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  color: var(--accent-soft);
+  background: linear-gradient(135deg, rgba(142, 197, 255, 0.18), rgba(255, 143, 104, 0.14));
+  font-weight: 800;
+}
+
+.install-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.install-grid pre {
+  margin: 0;
+  padding: 22px;
+  overflow-x: auto;
+  background: linear-gradient(180deg, rgba(9, 12, 19, 0.72), rgba(9, 12, 19, 0.96));
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .split,
+  .cards,
+  .install-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page { width: min(100% - 24px, 1180px); }
+  .hero-copy,
+  .panel,
+  .card,
+  .step,
+  .install-grid pre {
+    border-radius: 22px;
+  }
+  .hero-copy { padding: 28px; }
+}
