@@ -145,6 +145,7 @@ h2 {
   display: grid;
   align-content: start;
   align-self: start;
+  height: fit-content;
   gap: 0;
 }
 
